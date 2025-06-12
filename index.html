@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Architecture Final Exam 2024 - Solutions</title>
+        <link rel="icon" href="fcis.ico" type="image/x-icon">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script data-goatcounter="https://mahmoudsaad1307.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
+    <style>
+        .collapse-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .collapse-toggle:checked + .collapse-label + .collapse-content {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+        .collapse-label .icon {
+            transition: transform 0.3s ease;
+        }
+        .collapse-toggle:checked + .collapse-label .icon {
+            transform: rotate(180deg);
+        }
+        .pipeline-cell {
+            min-width: 80px;
+            height: 60px;
+            position: relative;
+        }
+        .pipeline-arrow {
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .pipeline-stage {
+            min-width: 100px;
+            height: 60px;
+            background-color: #3B82F6;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #1E40AF;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans p-4 md:p-8 max-w-6xl mx-auto">
+    <header class="mb-8 text-center">
+        <h1 class="text-2xl md:text-3xl font-bold text-blue-700 mb-2">Computer Architecture Final Exam 2024</h1>
+        <div class="mt-4 flex flex-wrap justify-center gap-2">
+            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Total Marks: 50</span>
+            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Duration: 120 minutes</span>
+        </div>
+    </header>
+
+    <!-- Question 1: True or False and MIPS Assembly -->
+    <section class="mb-12 bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="bg-blue-600 text-white px-6 py-4">
+            <h2 class="text-xl font-bold">Question 1: True or False and MIPS Translation (15 Marks)</h2>
+        </div>
+        <div class="p-6">
+            <div>
+                <input type="checkbox" id="q1a-toggle" class="collapse-toggle hidden">
+                <label for="q1a-toggle" class="collapse-label flex items-center justify-between cursor-pointer font-semibold">
+                    <span>Part (a): True or False (10 Marks)</span>
+                    <span class="icon text-blue-600">▼</span>
+                </label>
+                <div class="collapse-content mt-2 pl-4">
+                    <p class="text-green-700 font-semibold">Answer:</p>
+                    <ol class="list-decimal pl-5 text-sm text-gray-600">
+                        <li>False (State elements depend on past inputs, not just current ones.)</li>
+                        <li>True (Edge-triggered clocking changes states on clock edges.)</li>
+                        <li>True (PC holds the address of the current instruction.)</li>
+                        <li>False (Sign extend unit extends immediate values, not memory addresses.)</li>
+                        <li>True (ALUOp=10 uses funct field for operation selection.)</li>
+                        <li>False (Supercomputer is a high-performance standalone system.)</li>
+                        <li>True (Dynamic power = C × V² × f.)</li>
+                        <li>False (System CPU time includes OS time, not just program time.)</li>
+                        <li>True (Bandwidth measures tasks per unit time.)</li>
+                        <li>True (Chips are sections cut from a silicon wafer.)</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="mt-4">
+                <input type="checkbox" id="q1b-toggle" class="collapse-toggle hidden">
+                <label for="q1b-toggle" class="collapse-label flex items-center justify-between cursor-pointer font-semibold">
+                    <span>Part (b): MIPS to C Statement (5 Marks)</span>
+                    <span class="icon text-blue-600">▼</span>
+                </label>
+                <div class="collapse-content mt-2 pl-4">
+                    <p class="text-green-700 font-semibold">Answer: f = A[f]</p>
+                    <p class="text-sm text-gray-600 mt-1">sll $t0, $s0, 2: Multiplies f by 4 (word offset).<br>add $t0, $s6, $t0: Adds base address of A.<br>sll $t1, $s1, 2: Multiplies g by 4.<br>add $t1, $s7, $t1: Adds base address of B.<br>lw $s0, 0($t0): Loads A[f] into f.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Question 2: Performance and Datapath -->
+    <section class="mb-12 bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="bg-green-600 text-white px-6 py-4">
+            <h2 class="text-xl font-bold">Question 2: Performance and Datapath (35 Marks)</h2>
+        </div>
+        <div class="p-6">
+            <div class="mb-8">
+                <input type="checkbox" id="q2a-toggle" class="collapse-toggle hidden" checked>
+                <label for="q2a-toggle" class="collapse-label flex items-center justify-between cursor-pointer font-semibold text-lg mb-3">
+                    <span>Part (a): CPI Calculation (5 Marks)</span>
+                    <span class="icon text-green-600">▼</span>
+                </label>
+                <div class="collapse-content">
+                    <p class="text-green-700 font-semibold">Answer: CPI ≈ 0.00942 (Note: Likely a data error)</p>
+                    <p class="text-sm text-gray-600 mt-1">Clock Rate = 1 / (0.333 × 10⁻⁹) ≈ 3 × 10⁹ Hz.<br>Total Cycles = 750 / (0.333 × 10⁻⁹) ≈ 2.25 × 10¹².<br>CPI = 2.25 × 10¹² / 2.389 × 10¹⁴ ≈ 0.00942.<br>This low CPI suggests a possible mistake (e.g., IC might be 2.389 × 10¹²).</p>
+                </div>
+            </div>
+            <div class="mb-8">
+                <input type="checkbox" id="q2b-toggle" class="collapse-toggle hidden" checked>
+                <label for="q2b-toggle" class="collapse-label flex items-center justify-between cursor-pointer font-semibold text-lg mb-3">
+                    <span>Part (b): Datapath Latencies (10 Marks)</span>
+                    <span class="icon text-green-600">▼</span>
+                </label>
+                <div class="collapse-content">
+                    <p class="text-green-700 font-semibold">Answer:</p>
+                    <ol class="list-decimal pl-5 text-sm text-gray-600">
+                        <li>Single Cycle: 720 ps (200 + 90 + 90 + 250 + 90 ps).</li>
+                        <li>Pipelined Clock Cycle: 250 ps (slowest stage, D-Mem).</li>
+                        <li>Throughput: 1 / 250 ps = 4 × 10⁹ instructions/s.</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="mb-8">
+                <input type="checkbox" id="q2c-toggle" class="collapse-toggle hidden" checked>
+                <label for="q2c-toggle" class="collapse-label flex items-center justify-between cursor-pointer font-semibold text-lg mb-3">
+                    <span>Part (c): Data Hazards (10 Marks)</span>
+                    <span class="icon text-green-600">▼</span>
+                </label>
+                <div class="collapse-content">
+                    <p class="text-green-700 font-semibold">Answer:</p>
+                    <ol class="list-decimal pl-5 text-sm text-gray-600">
+                        <li>Yes, RAW hazard on $t0 (sub to and).</li>
+                        <li>Yes, forwarding from EX/MEM to ID/EX avoids stalls.</li>
+                        <li>Without forwarding or stalling or with only forwarding: 7 cycles (5+3-1).<br>With stalling: 11 cycles (5 + 7-1).</li>
+                    </ol>
+                </div>
+            </div>
+            <div>
+                <input type="checkbox" id="q2d-toggle" class="collapse-toggle hidden" checked>
+                <label for="q2d-toggle" class="collapse-label flex items-center justify-between cursor-pointer font-semibold text-lg mb-3">
+                    <span>Part (d): Pipelined Datapath with Control (10 Marks)</span>
+                    <span class="icon text-green-600">▼</span>
+                </label>
+                <div class="collapse-content">
+                    <div class="mt-4 p-3 bg-blue-50 rounded-md border border-blue-200 text-sm">
+                        <p><strong>Five Pipeline Stages:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-600">
+                            <li>IF: Instruction Fetch</li>
+                            <li>ID: Instruction Decode/Register Read</li>
+                            <li>EX: Execution/Address Calculation</li>
+                            <li>MEM: Memory Access</li>
+                            <li>WB: Write Back</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 p-3 bg-blue-50 rounded-md border border-blue-200 text-sm">
+                        <p><strong>Key Control Signals:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-600">
+                            <li><strong>RegDst:</strong> For MUX selecting destination register (R-type vs. I-type)</li>
+                            <li><strong>ALUSrc:</strong> For MUX selecting ALU second operand (register vs. immediate)</li>
+                            <li><strong>MemtoReg:</strong> For MUX selecting data to write back (ALU result vs. memory)</li>
+                            <li><strong>RegWrite:</strong> Enables register write</li>
+                            <li><strong>MemRead/MemWrite:</strong> Memory access controls</li>
+                            <li><strong>Branch:</strong> For branch instructions</li>
+                            <li><strong>ALUOp:</strong> Determines ALU operation</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 p-3 bg-blue-50 rounded-md border border-blue-200 text-sm">
+                        <p><strong>Pipeline Registers:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-600">
+                            <li><strong>IF/ID:</strong> Contains PC+4 and instruction</li>
+                            <li><strong>ID/EX:</strong> Contains control signals and operand values</li>
+                            <li><strong>EX/MEM:</strong> Contains ALU result, control signals</li>
+                            <li><strong>MEM/WB:</strong> Contains memory read data or ALU result</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="mt-12 text-center text-sm text-gray-500">
+        <p>Computer Architecture Final Exam Solutions | FCIS ASU 2024</p>
+    </footer>
+</body>
+</html>
